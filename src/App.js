@@ -3,47 +3,16 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MapPage from "./MapPage";
 import InputPage from "./InputPage";
 
-const buildingCatalog = [
-  // Economy buildings
-  { name: "Cafe", type: "economy", income: 200, harmony: 0 },
-  { name: "Restaurant", type: "economy", income: 200, harmony: 0 },
-  { name: "Bakery", type: "economy", income: 200, harmony: 0 },
-  { name: "Bank", type: "economy", income: 200, harmony: 0 },
-  { name: "Mall", type: "economy", income: 200, harmony: 0 },
-  { name: "Insurance", type: "economy", income: 200, harmony: 0 },
-  { name: "Stationery", type: "economy", income: 200, harmony: 0 },
-  { name: "Supermarket", type: "economy", income: 200, harmony: 0 },
-  { name: "Hotel", type: "economy", income: 200, harmony: 0 },
-  { name: "Gas Station", type: "economy", income: 200, harmony: 0 },
-  { name: "Greenhouse", type: "economy", income: 200, harmony: 0 },
-  { name: "Casino", type: "economy", income: 200, harmony: 0 },
-  { name: "Dispensary", type: "economy", income: 200, harmony: 0 },
 
-  // Harmony buildings
-  { name: "Hospital", type: "harmony", income: 0, harmony: 10 },
-  { name: "Parks", type: "harmony", income: 0, harmony: 10 },
-  { name: "Airport", type: "special", income: 0, harmony: 10 },
-  { name: "Museum", type: "harmony", income: 0, harmony: 10 },
-  { name: "Library", type: "harmony", income: 0, harmony: 10 },
-  { name: "Community Centre", type: "harmony", income: 0, harmony: 10 },
-  { name: "Theatre", type: "harmony", income: 0, harmony: 10 },
-  { name: "Fire Hall", type: "harmony", income: 0, harmony: 10 },
-  { name: "Care Home", type: "harmony", income: 0, harmony: 10 },
-  { name: "Day Care", type: "harmony", income: 0, harmony: 10 },
-  { name: "Police Station", type: "harmony", income: 0, harmony: 10 },
-  { name: "Post Office", type: "harmony", income: 0, harmony: 10 },
-  { name: "Amusement Park", type: "harmony", income: 0, harmony: 10 },
-  { name: "HH", type: "special", income: 0, harmony: 10 },
-  { name: "Airport", type: "special", income: 0, harmony: 10}
-];
 
 function App() {
   const [teams, setTeams] = useState(
-    Array.from({ length: 10 }, (_, i) => ({
+    Array.from({ length: 11 }, (_, i) => ({
       name: `Team ${i + 1}`,
       color: [
-        "#808000", "#ff3131", "#ffde59", "#ff914d", "#00bf63",
-        "#8c52ff", "#469990", "#7ed957", "#ff66c4", "#000075"
+        "#469990", "#ff3131", "#ffde59", "#ff914d", "#00bf63",
+        "#8c52ff", "#808000", "#7ed957", "#ff66c4", "#000075",
+        "#00f7ff"
       ][i],
       points: 0,
       income: 0,
@@ -101,8 +70,14 @@ function App() {
             }
             case "setRound" : {
               setRound(action.round);
+              break;
             }
-            case "undoWhiten": {
+            case "updateTimer": {
+              // Timer updates are handled directly in MapPage component
+              // No need to process here, just let it pass through
+              break;
+            }
+            /*case "undoWhiten": {
               const { groupIndex, backup } = action;
               const newTeams = [...prevTeams];
               if (newTeams[groupIndex]) {
@@ -113,7 +88,7 @@ function App() {
                 });
               }
               return newTeams;
-            }
+            }*/
             default:
               break;
           }
